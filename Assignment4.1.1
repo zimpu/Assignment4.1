@@ -1,0 +1,47 @@
+
+
+import java.io.IOException;
+
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.io.IntWritable;
+import org.apache.hadoop.io.LongWritable;
+import org.apache.hadoop.io.Text;
+import org.apache.hadoop.mapreduce.Job;
+import org.apache.hadoop.mapreduce.Mapper;
+import org.apache.hadoop.mapreduce.Reducer;
+import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
+import org.apache.hadoop.mapreduce.lib.input.TextInputFormat;
+import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
+import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;
+
+
+public class patientrxMR_filter {
+
+    public static class MapDemohadoop extends
+            Mapper<LongWritable, Text, Text, IntWritable> {
+
+        // setup , map, run, cleanup
+
+        public void map(LongWritable key, Text value, Context context)
+                throws IOException, InterruptedException {
+            String line = value.toString();
+            String[] elements = line.split(",");
+
+
+
+String companyName =elements[1];
+String productName =elementss[2];
+
+
+if ( (companyName == 'NULL') || (productName == 'NULL' )) {
+
+    Text tx = new Text(elements[2]);
+                int i = Integer.parseInt(elements[4]);
+                IntWritable it = new IntWritable(i);
+                context.write(tx, it);
+}
+        }
+    }
+
+    
